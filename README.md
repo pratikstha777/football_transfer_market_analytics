@@ -7,13 +7,15 @@ An end-to-end data engineering and business intelligence project designed to ing
 ## 📊 Project Architecture & Data Lifecycle
 
 The system enforces a strict data lifecycle pipeline to maintain referential integrity, handle structural variations in raw data, and eliminate data corruption.
+
+```text
 [Raw CSVs (12 Files)] ──> [Python Data Profiler] ──> [Data Dictionary generated]
-│
-▼ (LOAD DATA INFILE)
+        │
+        ▼ (LOAD DATA INFILE)
 [Staging Database] ─────> [Data Cleansing & Transformation Layer]
-│
-▼ (INSERT INTO ... SELECT)
-[Production DB (Highly Constrained Star/Snowflake Schema)]
-│
-▼
-[Analytical Views & Explanatory Queries]
+                                       │
+                                       ▼ (INSERT INTO ... SELECT)
+                         [Production DB (Highly Constrained Star/Snowflake Schema)]
+                                       │
+                                       ▼
+                         [Analytical Views & Explanatory Queries]
